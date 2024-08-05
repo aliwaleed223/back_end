@@ -1,0 +1,1 @@
+import patientRoutes from './routes/patientRoutes.js';
