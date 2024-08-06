@@ -43,10 +43,7 @@ const PatientSchema = new Schema({
         type: Boolean,  // Corrected to `Boolean`
         required: true
     },
-    releaseDate: {
-        type: Date,
-        required: false
-    }
+  
 });
 
 const Patient = mongoose.model('Patient', PatientSchema);
