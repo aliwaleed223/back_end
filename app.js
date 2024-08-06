@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import patientRoutes from './routes/patientRoutes.js';
+import router from './routes/inVoiceRoutes.js';
 import dotenv from 'dotenv';
 
 // Load environment variables
@@ -24,6 +25,8 @@ app.use(bodyParser.json());
 
 // Use the patient routes with a prefix
 app.use('/api', patientRoutes);
+
+app.use('/api', router);
 
 // Start the server
 app.listen(port, () => {
