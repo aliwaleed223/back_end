@@ -6,6 +6,8 @@ const router = express.Router();
 // Create Invoice
 router.post('/invoice', async (req, res) => {
     try {
+        console.log(req.body);
+        
         const newInvoice = new Invoice(req.body);
         await newInvoice.save();
         res.status(201).send(newInvoice); // 201 Created for successful creation

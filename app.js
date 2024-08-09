@@ -4,6 +4,9 @@ import bodyParser from 'body-parser';
 import patientRoutes from './routes/patientRoutes.js';
 import router from './routes/inVoiceRoutes.js';
 import dotenv from 'dotenv';
+import authRoutes from './routes/authRoutes.js';
+
+
 
 // Load environment variables
 dotenv.config();
@@ -27,6 +30,8 @@ app.use(bodyParser.json());
 app.use('/api', patientRoutes);
 
 app.use('/api', router);
+
+app.use('/auth', authRoutes);
 
 // Start the server
 app.listen(port, () => {

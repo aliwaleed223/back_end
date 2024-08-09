@@ -1,1 +1,1 @@
-import patientRoutes from './routes/patientRoutes.js';
+app.listen(port, () => {
