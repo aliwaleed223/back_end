@@ -1,9 +1,14 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/user.js';
+import dotenv from 'dotenv';
+
+
+dotenv.config();
+
 
 const router = express.Router();
-const secretKey = 'yourSecretKey';
+const secretKey = process.env.REFRESH_TOKEN_SECRET;
 
 // Register a new user
 router.post('/register', async (req, res) => {
@@ -27,7 +32,6 @@ router.post('/login', async (req, res) => {
     const isMatch = await user.comparePassword(password);
     if (!isMatch) return res.status(401).send('Invalid username or password');
 
-    // creat token
     const token = jwt.sign({ id: user._id, role: user.role }, secretKey, { expiresIn: '1h' });
     res.json({ token });
   } catch (error) {
@@ -47,7 +51,7 @@ const verifyToken = (req, res, next) => {
   });
 };
 
-//protected route
+// Example of a protected route
 router.get('/protected', verifyToken, (req, res) => {
   res.send(`Hello, ${req.user.role} user!`);
 });

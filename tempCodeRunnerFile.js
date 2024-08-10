@@ -1,1 +1,1 @@
-app.listen(port, () => {
+dotenv.config();

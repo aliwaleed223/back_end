@@ -11,7 +11,7 @@ import authRoutes from './routes/authRoutes.js';
 // Load environment variables
 dotenv.config();
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 //Connect to MongoDB
 mongoose.connect(process.env.DATABASE_URL)
