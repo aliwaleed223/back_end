@@ -15,10 +15,6 @@ userSchema.pre('save', async function(next) {
   next();
 });
 
-// Method to compare the provided password with the hashed password
-userSchema.methods.comparePassword = function(candidatePassword) {
-  return bcrypt.compare(candidatePassword, this.password);
-};
 
 const User = mongoose.model('User', userSchema);
 

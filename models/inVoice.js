@@ -24,5 +24,5 @@ paymentMethod:{
 },
     {timestamps:true});
 
-    const inVoice = mongoose.model('inVoice', inVoiceSchema);
-    export default inVoice;
+const inVoice = mongoose.model('inVoice', inVoiceSchema);
+export default inVoice;
