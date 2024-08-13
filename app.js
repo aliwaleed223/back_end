@@ -10,6 +10,7 @@ app.use(express.json());
 
 app.use('/api', patientRoutes); 
 app.use('/api', invRouter); 
-app.use('/auth', authRoutes); 
+app.use('/api', authRoutes); 
+
 
 export default app;
