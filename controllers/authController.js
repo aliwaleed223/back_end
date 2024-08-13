@@ -3,7 +3,7 @@ import User from '../models/user.js';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import Blacklist from '../models/balcklist.js'
-import express from 'express';
+
 
 dotenv.config();
 
@@ -89,8 +89,62 @@ Logout: async (req, res) => {
     });
   }
   res.end();
-}
-,
+},
+//fetch all the users
+ fetchAllUsers: async(req,res,next)=>{
+  try {
+    const Users = await User.find({});
+    res.json(Users);
+
+  }
+  catch(err){
+    console.log(err);
+    res.status(400).send("error during fetching");
+  }
+
+ },
+
+ fetchSingleUser: async(req,res,next)=>{
+  try{
+   const user =await User.findById(req.params.id);
+   res.json(user);
+  }
+  catch(err){
+   console.log(err);
+   res.status(400).send("error during fetching");
+  }
+   
+ },
+
+
+//update
+updateUser:async(req,res,next)=>{
+  try {
+      const updatedInvoice = await User.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+        runValidators: true
+      });
+      if (!updatedInvoice) {
+        return res.status(404).send(); // 404 Not Found if invoice not found
+      }
+      res.status(200).send(updatedInvoice); 
+    } catch (error) {
+      res.status(400).send(error);
+    }
+
+},
+
+//delete
+deleteUser:async(req,res,next)=>{
+ try{
+  const deletedUser=await User.findByIdAndDelete(req.params.id);
+  res.json(deletedUser);
+ }
+ catch(err){
+  console.log(err);
+  res.status(400).send("error during deleting");
+ }
+},
 
 getMe: async (req, res) => {
   try {

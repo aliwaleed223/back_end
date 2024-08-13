@@ -40,7 +40,7 @@ const PatientSchema = new Schema({
         required: true
     },
     memberShip: {
-        type: Boolean,  // Corrected to `Boolean`
+        type: Boolean, 
         required: true
     },
   

@@ -12,6 +12,19 @@ router.post('/login', authController.loginUser);
 // logout user 
 router.post('/logout',authController.Logout);
 
+// Get all users
+router.get('/users', authController.fetchAllUsers);
+
+// Get a single user by ID
+router.get('/user/:id', authController.fetchSingleUser);
+
+// Update a user by ID
+router.put('/updateUsers/:id', authController.updateUser);
+
+// Delete a user by ID
+router.delete('/deletUsers/:id', authController.deleteUser);
+
+
 // getMe Function
 router.post('/getMe',authController.getMe);
 

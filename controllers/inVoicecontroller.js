@@ -46,7 +46,7 @@ const invController = {
       if (!updatedInvoice) {
         return res.status(404).send(); // 404 Not Found if invoice not found
       }
-      res.status(200).send(updatedInvoice); // Corrected variable name
+      res.status(200).send(updatedInvoice); 
     } catch (error) {
       res.status(400).send(error);
     }
@@ -57,7 +57,7 @@ const invController = {
     try {
       const deletedInvoice = await Invoice.findByIdAndDelete(req.params.id);
       if (!deletedInvoice) {
-        return res.status(404).send(); // 404 Not Found if invoice not found
+        return res.status(404).send(); 
       }
       res.status(200).send(deletedInvoice);
     } catch (error) {
