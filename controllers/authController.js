@@ -25,7 +25,7 @@ registerUser: async (req, res) => {
     const user = new User({ username, password, role });
     await user.save();
 
-    const token = jwt.sign({ id: user._id, role: user.role }, secretKey, { expiresIn: '8h' });
+    const token = jwt.sign({name: user.username, id: user._id, role: user.role }, secretKey, { expiresIn: '8h' });
     res.json({ token });
   } catch (error) {
     console.error('Error registering user:', error);

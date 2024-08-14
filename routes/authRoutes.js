@@ -26,6 +26,6 @@ router.delete('/deletUsers/:id', authController.deleteUser);
 
 
 // getMe Function
-router.post('/getMe',authController.getMe);
+router.get('/getMe',authController.getMe);
 
 export default router;

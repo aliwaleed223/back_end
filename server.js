@@ -8,7 +8,7 @@ const port = process.env.PORT || 4000;
 
 // Connect to MongoDB
   try {
-  await mongoose.connect(process.env.DATABASE_URL);
+  await mongoose.connect('mongodb://localhost:27017');
 } catch (error) {
   handleError(error);
 }
