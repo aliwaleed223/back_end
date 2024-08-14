@@ -151,7 +151,7 @@ getMe: async (req, res) => {
     const authHeader = req.headers['authorization'];
  
     const splitToken = authHeader.split(' ')[1];
-    
+
     // The payload is the second part (index 1)
     const payloadBase64 = splitToken.split('.')[1];
 
