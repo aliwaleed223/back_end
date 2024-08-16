@@ -60,7 +60,6 @@ Logout: async (req, res) => {
     const authHeader = req.headers['authorization'];
     if (!authHeader) return res.sendStatus(204); // No content
 
-
     // Extract the token from the header (assuming Bearer scheme)
     const accessToken = authHeader.split(' ')[1];
 
@@ -68,7 +67,7 @@ Logout: async (req, res) => {
     const checkIfBlacklisted = await Blacklist.findOne({ token: accessToken });
 
     // If true, send a no content response.
-    if (checkIfBlacklisted) return res.sendStatus(204);
+    if (checkIfBlacklisted) return res.sendStatus(204); 
 
     // Otherwise, blacklist the token
     const newBlacklist = new Blacklist({
