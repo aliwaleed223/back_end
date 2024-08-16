@@ -170,5 +170,3 @@ getMe: async (req, res) => {
 };
 
 export default authController;
-
-
