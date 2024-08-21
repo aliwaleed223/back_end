@@ -1,16 +1,51 @@
 import Patient from '../models/patient.js';
+import QRCode from 'qrcode'
+ 
 
 const patientController = {
+  //Create QR image 
+  createQr : async (req,res)=>{
+  try {
+    const url = `https://4000/patient/profile/${req.query.id}`;
+    const qrCodeImage = await QRCode.toDataURL(url);
+    res.setHeader('Content-Type', 'image/png');
+
+    const img = Buffer.from(qrCodeImage.split(",")[1], 'base64');
+    res.send(img);
+  
+  } catch (err) {
+    console.error('Error generating QR code:', err);
+    res.status(500).send('Internal Server Error');
+  }
+
+  },
 
   // Create a new patient
   createPatient: async (req, res) => {
     try {
-      const patient = new Patient(req.body);
-      await patient.save();
-      res.status(201).send(patient);
+        const { name, age, phone, description, medicine, cardNumber, gender, address, historicalSurgeries, memberShip } = req.body;
+        const picturePath = req.file ? req.file.path : null;
+
+        const newPatient = new Patient({
+            name,
+            age,
+            phone,
+            description,
+            medicine,
+            cardNumber,
+            gender,
+            address,
+            historicalSurgeries,
+            memberShip,
+            picture: picturePath
+        });
+
+        const savedPatient = await newPatient.save();
+        res.status(201).json(savedPatient);
     } catch (error) {
-      res.status(400).send(error);
+        res.status(500).json({ message: 'Error creating patient', error });
     }
+
   },
 
   // Read all patients

@@ -9,11 +9,14 @@ const app = express();
 // Middleware to parse JSON
 app.use(express.json());
 
-// Use route handlers
-app.use('/api', patientRoutes); 
-app.use('/api', invRouter); 
-app.use('/api', authRoutes); 
-app.use('/api', persRoutes); 
+// Make the uploads folder accessible to the public
+app.use('/uploads', express.static('uploads'));
+
+// Use route handlers with distinct prefixes
+app.use('/api', patientRoutes);
+app.use('/api', invRouter);
+app.use('/api', authRoutes);
+app.use('/api', persRoutes);
 
 // Default error handling middleware (optional)
 app.use((req, res, next) => {
@@ -21,4 +24,3 @@ app.use((req, res, next) => {
 });
 
 export default app;
-

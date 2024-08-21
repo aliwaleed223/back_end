@@ -12,7 +12,7 @@ const PatientSchema = new Schema({
         required: true
     },
     phone: {
-        type: Number,
+        type: String,  
         required: true
     },
     description: {
@@ -24,7 +24,7 @@ const PatientSchema = new Schema({
         required: true
     },
     cardNumber: {
-        type: Number,
+        type: String,  
         required: true
     },
     gender: {
@@ -36,14 +36,17 @@ const PatientSchema = new Schema({
         required: true
     },
     historicalSurgeries: {
-        type: String,
+        type: String,  
         required: true
     },
     memberShip: {
         type: Boolean, 
         required: true
     },
-  
+    picture: {
+        type: String,
+        required: false 
+    }  
 });
 
 const Patient = mongoose.model('Patient', PatientSchema);
