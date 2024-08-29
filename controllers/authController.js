@@ -31,9 +31,7 @@ registerUser: async (req, res) => {
     console.error('Error registering user:', error);
     res.status(400).send('Error registering user');
   }
-}
-
-  ,
+},
 
   // Login user and generate JWT
   loginUser: async (req, res) => {
@@ -164,9 +162,35 @@ getMe: async (req, res) => {
     console.log(error);
     res.status(400).send('Error');
   }
+},
+
+protected : async (req , res ,next) => {
+
+  try{
+    const authHeader =req.headers['authorization'];
+
+    if (!authHeader){
+      return  res.status(400).json({"msg":"You Are Not Authintacted !"});
+    }
+
+    const splitToken = authHeader.split(' ')[1];
+
+    jwt.verify(splitToken, secretKey, (err, user) => {
+      if (err) {
+         return res.status(403).json({ "msg": "Token is not valid!" });
+      }
+        next();
+    } )
+
+  }
+  
+  catch (err){
+   console.log(err);
+   res.status(400).json('Error ');
+  }
 }
 
-  
+
 };
 
 export default authController;

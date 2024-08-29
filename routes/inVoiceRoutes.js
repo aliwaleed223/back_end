@@ -1,7 +1,11 @@
 import express from 'express';
 import invController from '../controllers/inVoicecontroller.js';
+import authController from '../controllers/authController.js';
 
 const router = express.Router();
+
+
+router.use(authController.protected);
 
 // Create Invoice
 router.post('/invoice', invController.createInvoice) ;

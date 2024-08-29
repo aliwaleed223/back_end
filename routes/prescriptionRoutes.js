@@ -1,7 +1,11 @@
 import express from 'express';
 import prescriptionController from '../controllers/prescriptionController.js';
+import authController from '../controllers/authController.js';
+
 
 const router = express.Router();
+
+router.use(authController.protected);
 
 // Create a new prescription
 router.post('/prescriptions', prescriptionController.createPrescription);
